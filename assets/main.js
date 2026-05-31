@@ -58,76 +58,27 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // ── GSAP hero parallax + entrance ───────────────────────
-  window._initGSAP = function () {
-    if (prefersReduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero parallax
-    var heroBg = document.querySelector('.hero-parallax-bg, .hero__bg');
-    if (heroBg) {
-      gsap.to(heroBg, {
-        yPercent: 22,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2,
-        },
-      });
+  // ── Hero parallax — vanilla rAF, no GSAP dependency ────
+  (function () {
+    if (prefersReduced) return;
+    var hero = document.querySelector('.hero[data-hero-parallax]');
+    var media = hero && hero.querySelector('.hero-media');
+    if (!media) return;
+    var ticking = false;
+    function tick() {
+      media.style.transform = 'translateY(' + (window.scrollY * 0.18) + 'px)';
+      ticking = false;
     }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(tick); ticking = true; }
+    }, { passive: true });
+  }());
 
-    // Hero content entrance
-    var heroContent = document.querySelector('.hero__content, .hero-content');
-    if (heroContent) {
-      var children = heroContent.querySelectorAll('.hero__badge, .hero-eyebrow, h1, .hero__intro, .hero-lead, .hero__cta, .hero-cta');
-      gsap.from(children, {
-        opacity: 0,
-        y: 32,
-        duration: 0.7,
-        stagger: 0.14,
-        ease: 'power2.out',
-        clearProps: 'all',
-      });
-    }
-
-    // Staggered section reveals via GSAP
-    document.querySelectorAll('[data-stagger]').forEach(function (container) {
-      var items = container.querySelectorAll(':scope > *');
-      gsap.from(items, {
-        opacity: 0,
-        y: 28,
-        duration: 0.55,
-        stagger: 0.12,
-        ease: 'power2.out',
-        clearProps: 'all',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 82%',
-          once: true,
-        },
-      });
-    });
-
-    // Nav CTA + primary button micro-interactions
-    document.querySelectorAll('.nav-cta a, .btn--primary, .btn-primary').forEach(function (btn) {
-      btn.addEventListener('mouseenter', function () {
-        gsap.to(btn, { scale: 1.04, duration: 0.18, ease: 'power1.out' });
-      });
-      btn.addEventListener('mouseleave', function () {
-        gsap.to(btn, { scale: 1, duration: 0.18, ease: 'power1.in' });
-      });
-    });
-  };
-
-  // Auto-init GSAP if already loaded (CDN scripts before main.js)
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    window._initGSAP();
-  } else {
-    window.addEventListener('load', function () {
-      window._initGSAP && window._initGSAP();
+  // ── Button scale micro-interaction (CSS handles shimmer) ─
+  if (!prefersReduced) {
+    document.querySelectorAll('.btn-primary, .btn-outline').forEach(function (btn) {
+      btn.addEventListener('mouseenter', function () { btn.style.transform = 'translateY(-2px) scale(1.03)'; });
+      btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
     });
   }
 })();

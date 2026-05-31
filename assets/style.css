@@ -754,6 +754,128 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================================
+   ANIMATION PASS — Lot 11, AnimationDesigner
+   ============================================================ */
+
+/* GPU hints for parallax layers */
+.hero-bg,
+.hero-media {
+  will-change: transform;
+}
+
+/* ── 1. [data-reveal] entrance — base + right variant ─────── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-reveal="right"]) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  [data-reveal]:not([data-reveal="right"]).is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-reveal="right"] {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  [data-reveal="right"].is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── 2. Stagger delays for [data-stagger] direct children ─── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-stagger] > [data-reveal]:nth-child(2) { transition-delay: 0.10s; }
+  [data-stagger] > [data-reveal]:nth-child(3) { transition-delay: 0.20s; }
+  [data-stagger] > [data-reveal]:nth-child(4) { transition-delay: 0.30s; }
+  [data-stagger] > [data-reveal]:nth-child(5) { transition-delay: 0.40s; }
+  [data-stagger] > [data-reveal]:nth-child(6) { transition-delay: 0.50s; }
+
+  /* Hero content children stagger */
+  .hero-content > [data-reveal]:nth-child(2) { transition-delay: 0.12s; }
+  .hero-content > [data-reveal]:nth-child(3) { transition-delay: 0.24s; }
+  .hero-content > [data-reveal]:nth-child(4) { transition-delay: 0.36s; }
+}
+
+/* ── 3. Stat number pop on reveal ────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes stat-pop {
+    0%  { opacity: 0; transform: scale(0.75) translateY(6px); }
+    70% { transform: scale(1.08) translateY(-2px); }
+    100%{ opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .stat-item.is-visible .stat-number {
+    display: inline-block;
+    animation: stat-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+  }
+}
+
+/* ── 4. Nav animated underline — desktop only ───────────── */
+@media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+  .site-nav a:not([aria-current="page"]) {
+    background-image: linear-gradient(var(--color-secondary), var(--color-secondary));
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom 3px;
+    transition: background-size 0.25s ease, color 0.15s, background-color 0.15s;
+  }
+  .site-nav a:not([aria-current="page"]):hover {
+    background-size: 100% 2px;
+  }
+}
+
+/* ── 5. CTA button shimmer on hover ──────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes btn-shimmer {
+    0%   { transform: translateX(-200%) skewX(-15deg); }
+    100% { transform: translateX(300%)  skewX(-15deg); }
+  }
+  .btn-primary {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.22) 50%, transparent 100%);
+    pointer-events: none;
+    transform: translateX(-200%) skewX(-15deg);
+  }
+  .btn-primary:hover::after {
+    animation: btn-shimmer 0.6s ease-in-out forwards;
+  }
+}
+
+/* ── 6. Visual placeholder gradient drift on card hover ──── */
+@media (prefers-reduced-motion: no-preference) {
+  .visual-placeholder {
+    background-size: 220% 220%;
+    background-position: 0% 40%;
+    transition: background-position 1.4s ease;
+  }
+  .card:hover .visual-placeholder,
+  .service-card:hover .visual-placeholder,
+  .about-teaser-visual:hover .visual-placeholder {
+    background-position: 100% 60%;
+  }
+}
+
+/* ── Accessibility hard stop ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
    BREAKPOINTS
    ============================================================ */
 
