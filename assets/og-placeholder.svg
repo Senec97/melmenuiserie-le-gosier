@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#18181B"/>
+  <rect x="60" y="60" width="1080" height="510" rx="16" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <text x="600" y="270" font-family="Georgia, serif" font-size="80" font-weight="700" text-anchor="middle" fill="#FFFFFF" letter-spacing="8">LOOK OPTIC</text>
+  <text x="600" y="350" font-family="Georgia, serif" font-size="28" text-anchor="middle" fill="#E11D48" letter-spacing="2">Votre opticien indépendant à Sainte-Rose</text>
+  <line x1="440" y1="393" x2="760" y2="393" stroke="#0EA5E9" stroke-width="2"/>
+  <text x="600" y="435" font-family="Georgia, serif" font-size="20" text-anchor="middle" fill="rgba(255,255,255,0.55)">Guadeloupe · +590 590 28 37 10</text>
+</svg>

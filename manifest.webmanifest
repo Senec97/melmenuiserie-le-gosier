@@ -1,0 +1,11 @@
+{
+  "name": "Melmenuiserie — Menuisier Artisan Le Gosier",
+  "short_name": "Melmenuiserie",
+  "description": "Artisan menuisier au Gosier, Guadeloupe. Agencement sur mesure : cuisines, dressings, mobilier. 35 ans d'expérience.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFDF9",
+  "theme_color": "#3D2B1C",
+  "lang": "fr",
+  "icons": [{"src": "/assets/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}

@@ -1,0 +1,9 @@
+:root {
+  --color-primary: #3D2B1C;
+  --color-secondary: #D97706;
+  --color-accent: #EA580C;
+  --color-bg: #FFFDF9;
+  --color-text: #1C1208;
+  --font-display: "Playfair Display", system-ui, sans-serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+}

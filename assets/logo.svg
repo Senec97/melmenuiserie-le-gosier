@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" width="280" height="56" role="img" aria-label="Melmenuiserie">
+  <title>Melmenuiserie</title>
+  <rect x="2" y="8" width="40" height="40" rx="4" fill="#D97706"/>
+  <line x1="10" y1="38" x2="34" y2="18" stroke="#3D2B1C" stroke-width="3" stroke-linecap="round"/>
+  <line x1="10" y1="28" x2="34" y2="28" stroke="#3D2B1C" stroke-width="3" stroke-linecap="round"/>
+  <line x1="10" y1="18" x2="34" y2="38" stroke="#3D2B1C" stroke-width="2" stroke-linecap="round"/>
+  <text x="52" y="36" font-family="'Playfair Display',Georgia,serif" font-size="22" font-weight="700" fill="#3D2B1C" letter-spacing="0.5">Melmenuiserie</text>
+  <text x="52" y="50" font-family="Arial,sans-serif" font-size="9" fill="#D97706" letter-spacing="1.5">MENUISIER · LE GOSIER</text>
+</svg>
